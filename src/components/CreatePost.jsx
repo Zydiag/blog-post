@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { Header, Button, MarkdownPreview } from '.';
 import { postRef } from '../auth';
 import { addDoc } from 'firebase/firestore';
+import { useAuth } from '../contexts/AuthContext';
 
 export const CreatePost = () => {
+  const { currentUser } = useAuth();
   const [data, setData] = useState({});
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
@@ -11,12 +13,14 @@ export const CreatePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(e.target.title.value);
+    console.log(currentUser.displayName);
     const date = new Date();
     setData({});
     await addDoc(postRef, {
       title: e.target.title.value,
       body: e.target.body.value,
       createdAt: date.toLocaleDateString(),
+      author: currentUser.displayName,
     });
     e.target.reset();
   };

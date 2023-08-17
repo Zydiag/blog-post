@@ -18,8 +18,8 @@ export const Home = () => {
     <div className="dark:bg-zinc-900 dark:text-white min-h-screen pb-5 ">
       <Header title={'Blogpost'} />
       <div className="dark:bg-zinc-900 lg:max-w-6xl md:max-w-5xl mx-auto">
-        {blogs.map(({ id, title, body, createdAt }) => (
-          <BlogCard key={id} id={id} title={title} body={body} createdAt={createdAt} />
+        {blogs.map(({ id, title, body, createdAt, author }) => (
+          <BlogCard key={id} id={id} title={title} body={body} createdAt={createdAt} author={author} />
         ))}
       </div>
     </div>
