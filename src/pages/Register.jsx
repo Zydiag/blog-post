@@ -7,7 +7,7 @@ import { auth } from '../auth';
 import { FcGoogle } from 'react-icons/fc';
 export const Register = () => {
   const navigate = useNavigate();
-  const { signUp } = useAuth();
+  const { signUp, verifyEmail, currentUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -20,13 +20,20 @@ export const Register = () => {
     try {
       setLoading(true);
       await signUp(name, email, password);
-
-      updateProfile(auth.currentUser, {
+      await updateProfile(auth.currentUser, {
         displayName: name,
-      }).then(() => {});
+      });
 
-      setLoading(false);
-      navigate('/');
+      await verifyEmail();
+      // console.log(await verifyEmail());
+
+      if (currentUser?.emailVerified === true) {
+        setLoading(false);
+        navigate('/');
+      } else {
+        setLoading(false);
+        navigate('/verify-email');
+      }
     } catch (error) {
       setError(true);
       console.log(error);

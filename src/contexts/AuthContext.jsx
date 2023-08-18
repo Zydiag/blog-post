@@ -7,6 +7,8 @@ import {
   signOut,
   GoogleAuthProvider,
   signInWithPopup,
+  sendEmailVerification,
+  deleteUser,
 } from 'firebase/auth';
 
 const AuthContext = createContext();
@@ -33,13 +35,25 @@ export const AuthProvider = ({ children }) => {
   }
   function googleSignIn() {
     const googleAuthProvider = new GoogleAuthProvider();
-    return signInWithPopup(auth, googleAuthProvider)
+    return signInWithPopup(auth, googleAuthProvider);
+  }
+  function verifyEmail() {
+    sendEmailVerification(auth.currentUser).then(() => {
+      // Email sent.
+      
+    })
+  }
+  function removeUser() {
+    return deleteUser(auth.currentUser);
   }
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      // console.log(currentUser);
       setCurrentUser(user);
+      setCurrentUser(() => user);
     });
+    // console.log(currentUser);
     return () => unsubscribe;
   }, [currentUser]);
 
@@ -49,6 +63,9 @@ export const AuthProvider = ({ children }) => {
     signUp,
     login,
     logout,
+    googleSignIn,
+    verifyEmail,
+    removeUser,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

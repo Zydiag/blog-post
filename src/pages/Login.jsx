@@ -3,24 +3,50 @@ import { useAuth } from '../contexts/AuthContext';
 import loader from '../assets/loading.svg';
 import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
+// import { VerifyEmail } from './VerifyEmail';
 
 export const Login = () => {
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, googleSignIn, currentUser, verifyEmail } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [resend, setResend] = useState(false);
+  const resendLink = async () => await verifyEmail()
+
+  const handleGoogleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      await googleSignIn();
+
+      setLoading(false);
+      navigate('/');
+    } catch (error) {
+      setError(true);
+      setLoading(false);
+      console.log(error.message);
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
 
     try {
+      setError(false)
       setLoading(true);
       await login(email, password);
       setLoading(false);
-      navigate('/');
+      if(currentUser?.emailVerified){
+        setError(false)
+        navigate('/');
+      } else {
+        setResend(true)
+        setError('Please Verify your email')
+      }
+      // navigate('/');
     } catch (error) {
-      setError(true);
+      setError(error.message);
       setLoading(false);
       console.log(error.message);
     }
@@ -51,18 +77,27 @@ export const Login = () => {
               type="password"
             />
           </label>
+          {resend && (
+            <span  onClick={resendLink} className="text-left cursor-pointer">
+              Resend
+            </span>
+          )}
           {error && (
             <p className="text-red-500 dark:text-red-400">
-              Invalid email or password
+              {error}
             </p>
           )}
           <button className="border-[1px] border-gray-400 rounded mt-2 py-1 bg-zinc-100 text-black dark:bg-white dark:text-black hover:bg-white text-center hover:text-black dark:hover:bg-transparent dark:hover:text-white transition-colors duration-200">
             Login
           </button>
-          <button className="relative border-[1px] border-gray-400 rounded mt-2 py-1 bg-zinc-100 text-black dark:bg-white dark:text-black hover:bg-white hover:text-black dark:hover:bg-transparent dark:hover:text-white transition-colors duration-200">
+          {/* <div className='text-center'>or</div>  */}
+          <button
+            onClick={handleGoogleSignIn}
+            className="relative border-[1px] border-gray-400 rounded  py-1 bg-zinc-100 text-black dark:bg-white dark:text-black hover:bg-white hover:text-black dark:hover:bg-transparent dark:hover:text-white transition-colors duration-200"
+          >
             <span className="">
               <FcGoogle className="text-2xl absolute left-2" />
-              SignIn with google
+              Sign In with google
             </span>
           </button>
         </form>
