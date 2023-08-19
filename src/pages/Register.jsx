@@ -1,16 +1,30 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { useState } from 'react';
-import loader from '../assets/loading.svg';
 import { updateProfile } from 'firebase/auth';
 import { auth } from '../auth';
 import { FcGoogle } from 'react-icons/fc';
+import loader from '../assets/loading.svg';
 export const Register = () => {
   const navigate = useNavigate();
-  const { signUp, verifyEmail, currentUser } = useAuth();
+  const { signUp, verifyEmail, currentUser,googleSignIn } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  const handleGoogleSignIn = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      await googleSignIn();
+
+      setLoading(false);
+      navigate('/');
+    } catch (error) {
+      setError(true);
+      setLoading(false);
+      console.log(error.message);
+    }
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -84,9 +98,12 @@ export const Register = () => {
           {/* <Button text="Register" /> */}
 
           <button className="border-[1px]  rounded mt-2 py-1 bg-zinc-100 text-black dark:bg-white dark:text-black hover:bg-white text-center hover:text-black dark:hover:bg-transparent dark:hover:text-white transition-colors duration-200">
-            Login
+            Create Account
           </button>
-          <button className="relative border-[1px]  rounded mt-2 py-1 bg-zinc-100 text-black dark:bg-white dark:text-black hover:bg-white hover:text-black dark:hover:bg-transparent dark:hover:text-white transition-colors duration-200">
+          <button 
+
+          onClick={handleGoogleSignIn}
+          className="relative border-[1px]  rounded mt-2 py-1 bg-zinc-100 text-black dark:bg-white dark:text-black hover:bg-white hover:text-black dark:hover:bg-transparent dark:hover:text-white transition-colors duration-200">
             <span className="">
               <FcGoogle className="text-2xl absolute left-2" />
               SignIn with google
