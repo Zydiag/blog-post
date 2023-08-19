@@ -1,8 +1,21 @@
-# React + Vite
+# BlogPost
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A Blog Post to write Blogs 
 
-Currently, two official plugins are available:
+## Features 
+- Uses Markdown
+- A markdown preview when creating a post
+- Only authenticated users can create a post
+- responsive to some extent
+- dark theme
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Demo
+
+Link to website is following:
+[Demo Link](https://blog-post-murex.vercel.app/)
+
+## Screenshots
+
+![image](https://github.com/Zydiag/blog-post/assets/96966190/fcbb4b9c-b795-4344-be23-0fe876be068c)
+
+
