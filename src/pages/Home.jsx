@@ -30,8 +30,8 @@ export const Home = () => {
     getBlogs();
   }, []);
   return (
-    <div className="dark:bg-zinc-900 dark:text-white min-h-screen pb-5 ">
-      <Header title={'Blogpost'} />
+    <div className="dark:bg-zinc-900 dark:text-white min-h-[95vh] py-5 ">
+      {/* <Header title={'Blogpost'} /> */}
       {loading ? (
         <div className="flex justify-center items-center h-[80vh]">
           <img src={loader} alt="" />

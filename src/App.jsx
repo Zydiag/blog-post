@@ -1,10 +1,10 @@
-import { Sidebar } from "./components/Sidebar"
+import { TopBar } from "./components"
 import { AllRoutes } from "./routes/AllRoutes"
 
 const App = () => {
   return (
-    <div className="">
-      <Sidebar />
+    <div className="h-screen">
+      <TopBar />
       <AllRoutes />
     </div>
   )

@@ -1,6 +1,6 @@
 export { Header } from './Header'
 export { Button } from './Button'
-export { Sidebar } from './Sidebar'
+export { TopBar } from './TopBar'
 export { BlogCard } from './BlogCard'
 export { CreatePost } from './CreatePost'
 export { MarkdownPreview } from './MarkdownPreview'

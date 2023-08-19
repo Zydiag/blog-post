@@ -27,7 +27,9 @@ export const AuthProvider = ({ children }) => {
     return userCredentials;
   }
   function login(email, password) {
-    return signInWithEmailAndPassword(auth, email, password);
+    const res = signInWithEmailAndPassword(auth, email, password);
+    // setCurrentUser()
+    return res;
   }
 
   function logout() {
@@ -40,22 +42,42 @@ export const AuthProvider = ({ children }) => {
   function verifyEmail() {
     sendEmailVerification(auth.currentUser).then(() => {
       // Email sent.
-      
-    })
+    });
   }
   function removeUser() {
     return deleteUser(auth.currentUser);
   }
 
+  function reload() {
+    auth.currentUser.reload();
+  }
+  useEffect(() => {
+    console.log(currentUser);
+  }, [currentUser]);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      // console.log(currentUser);
-      setCurrentUser(user);
-      setCurrentUser(() => user);
+      console.log(user); 
+      console.log('user changed'); 
+      setCurrentUser((prevUser) => {
+        // Update the state based on the previous state
+        if (user && !prevUser.uid) {
+          // Handle user login
+          console.log('User logged in:', user.email);
+          return user;
+        } else if (!user && prevUser.uid) {
+          // Handle user logout
+          console.log('User logged out');
+          return {};
+        }
+
+        // No change needed
+        return prevUser;
+      });
     });
-    // console.log(currentUser);
-    return () => unsubscribe;
-  }, [currentUser]);
+
+    return () => unsubscribe();
+  }, []);
 
   const value = {
     currentUser,
@@ -66,6 +88,7 @@ export const AuthProvider = ({ children }) => {
     googleSignIn,
     verifyEmail,
     removeUser,
+    reload,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

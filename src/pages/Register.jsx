@@ -43,27 +43,27 @@ export const Register = () => {
     e.target.reset();
   };
   return (
-    <div className="flex justify-center items-center h-screen dark:bg-zinc-900 dark:text-white">
+    <div className="flex justify-center items-center new-height dark:bg-zinc-900 dark:text-white">
       {loading ? (
         // <p>Loading...</p>
         <img src={loader} alt="" />
       ) : (
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col w-96 gap-5 border-2 py-5 px-8 rounded-lg shadow-lg dark:border-gray-400"
+          className="flex flex-col w-96 gap-5 border-2 py-5 px-8 rounded-lg shadow-md dark:border-zinc-700 dark:shadow-zinc-800"
         >
           <label htmlFor="Name">
             Name
             <input
               name="name"
-              className="border-[1px] border-gray-400 rounded mt-2 py-1 px-2 bg-transparent w-full"
+              className="border-[1px] dark:border-zinc-700  rounded mt-1 py-1 px-2 bg-transparent w-full"
               type="text"
             />
           </label>
           <label htmlFor="email">
             Email
             <input
-              className="border-[1px] border-gray-400 rounded mt-2 py-1 px-2 bg-transparent w-full"
+              className="border-[1px] dark:border-zinc-700  rounded mt-1 py-1 px-2 bg-transparent w-full"
               type="email"
               name="email"
               id=""
@@ -72,7 +72,7 @@ export const Register = () => {
           <label htmlFor="password">
             Password
             <input
-              className="border-[1px] border-gray-400 rounded mt-2 py-1 px-2 bg-transparent w-full "
+              className="border-[1px] dark:border-zinc-700  rounded mt-1 py-1 px-2 bg-transparent w-full "
               name="password"
               type="password"
             />
@@ -84,10 +84,10 @@ export const Register = () => {
           )}
           {/* <Button text="Register" /> */}
 
-          <button className="border-[1px] border-gray-400 rounded mt-2 py-1 bg-zinc-100 text-black dark:bg-white dark:text-black hover:bg-white text-center hover:text-black dark:hover:bg-transparent dark:hover:text-white transition-colors duration-200">
+          <button className="border-[1px]  rounded mt-2 py-1 bg-zinc-100 text-black dark:bg-white dark:text-black hover:bg-white text-center hover:text-black dark:hover:bg-transparent dark:hover:text-white transition-colors duration-200">
             Login
           </button>
-          <button className="relative border-[1px] border-gray-400 rounded mt-2 py-1 bg-zinc-100 text-black dark:bg-white dark:text-black hover:bg-white hover:text-black dark:hover:bg-transparent dark:hover:text-white transition-colors duration-200">
+          <button className="relative border-[1px]  rounded mt-2 py-1 bg-zinc-100 text-black dark:bg-white dark:text-black hover:bg-white hover:text-black dark:hover:bg-transparent dark:hover:text-white transition-colors duration-200">
             <span className="">
               <FcGoogle className="text-2xl absolute left-2" />
               SignIn with google

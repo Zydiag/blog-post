@@ -15,8 +15,14 @@
 @tailwind utilities;
 
 html,body {
-  height: 100%;
+  height: 100vh;
   width: 100%;
+}
+#root {
+  height: 100%;
+}
+.new-height {
+  height: calc(100vh - 4.5rem);
 }
 
 html::-webkit-scrollbar {
