@@ -31,7 +31,7 @@ export const BlogPage = () => {
           <img src={loader} alt="" />
         </div>
       ) : (
-        <div className="dark:bg-zinc-900  lg:max-w-6xl md:max-w-5xl mx-auto py-5 ">
+        <div className="dark:bg-zinc-900  lg:max-w-6xl md:max-w-5xl lg:mx-auto mx-3 px-3 py-5  ">
           <h1 className="text-4xl py-5">{blog.title}</h1>
           <div className="text-xl py-4 prose dark:prose-invert dark:text-white ">
             <ReactMarkdown>{blog.body}</ReactMarkdown>
