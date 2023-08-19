@@ -1,5 +1,4 @@
 import { BlogCard } from '../components/BlogCard';
-import { Header } from '../components/Header';
 import { postRef } from '../auth';
 import { onSnapshot, orderBy, query } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
@@ -37,7 +36,7 @@ export const Home = () => {
           <img src={loader} alt="" />
         </div>
       ) : (
-        <div className="dark:bg-zinc-900 lg:max-w-6xl md:max-w-5xl mx-auto">
+        <div className="dark:bg-zinc-900 lg:max-w-6xl md:max-w-5xl  mx-4 lg:mx-auto">
           {error && (
             <p className=" my-3 text-red-500 dark:text-red-400">
               Something went wrong

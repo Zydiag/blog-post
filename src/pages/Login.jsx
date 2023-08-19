@@ -8,12 +8,12 @@ import { auth } from '../auth';
 
 export const Login = () => {
   const navigate = useNavigate();
-  const { login, googleSignIn, currentUser, verifyEmail } = useAuth();
+  const { login, googleSignIn, verifyEmail } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [resend, setResend] = useState(false);
   const resendLink = async () => {
-    setResend(false)
+    setResend(false);
     await verifyEmail();
   };
 
@@ -54,7 +54,6 @@ export const Login = () => {
       await login(email, password);
       await checkEmailVerificationAndNavigate();
       setLoading(false);
-      console.log(currentUser, 'login');
     } catch (error) {
       setError(error.message);
       setLoading(false);

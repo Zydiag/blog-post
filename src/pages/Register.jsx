@@ -25,7 +25,6 @@ export const Register = () => {
       });
 
       await verifyEmail();
-      // console.log(await verifyEmail());
 
       if (currentUser?.emailVerified === true) {
         setLoading(false);
@@ -50,7 +49,7 @@ export const Register = () => {
       ) : (
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col w-96 gap-5 border-2 py-5 px-8 rounded-lg shadow-md dark:border-zinc-700 dark:shadow-zinc-800"
+          className="flex flex-col w-96 gap-5 border-2 py-5 px-8 rounded-lg shadow-lg dark:border-zinc-800 dark:shadow-black"
         >
           <label htmlFor="Name">
             Name

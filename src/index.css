@@ -24,6 +24,9 @@ html,body {
 .new-height {
   height: calc(100vh - 4.5rem);
 }
+.min-new-height {
+  min-height: calc(100vh - 4.5rem);
+}
 
 html::-webkit-scrollbar {
   width: 16px;

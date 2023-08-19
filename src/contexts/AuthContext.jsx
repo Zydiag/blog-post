@@ -51,27 +51,15 @@ export const AuthProvider = ({ children }) => {
   function reload() {
     auth.currentUser.reload();
   }
-  useEffect(() => {
-    console.log(currentUser);
-  }, [currentUser]);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-      console.log(user); 
-      console.log('user changed'); 
       setCurrentUser((prevUser) => {
-        // Update the state based on the previous state
         if (user && !prevUser.uid) {
-          // Handle user login
-          console.log('User logged in:', user.email);
           return user;
         } else if (!user && prevUser.uid) {
-          // Handle user logout
-          console.log('User logged out');
           return {};
         }
-
-        // No change needed
         return prevUser;
       });
     });

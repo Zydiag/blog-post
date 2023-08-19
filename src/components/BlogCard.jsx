@@ -11,15 +11,15 @@ export const BlogCard = ({ title, id, date, author }) => {
         shadow-md 
         hover:translate-x-[2px] 
         dark:text-white
-        dark:border-zinc-700
-        dark:shadow-zinc-800
+        dark:border-zinc-800
+        dark:shadow-black
         hover:shadow-none
         transition-transform 
         "
       >
-        <span className="text-sm text-gray-400 ">{date}</span>
+        <span className="md:text-sm text-xs text-gray-400 ">{date}</span>
         <p className="text-xl py-3">{title}</p>
-        <span className="absolute right-3 bottom-1 before:content-['-'] before:mr-2 italic">
+        <span className="absolute right-3 bottom-1 before:content-['-'] before:mr-2 italic text-xs md:text-sm">
           {author}
         </span>
       </div>

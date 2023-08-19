@@ -25,13 +25,13 @@ export const BlogPage = () => {
     getBlog();
   }, [id]);
   return (
-    <div className="dark:bg-zinc-900 dark:text-white min-h-screen pb-6">
+    <div className="dark:bg-zinc-900 dark:text-white min-new-height pb-6">
       {loading ? (
         <div className="flex justify-center items-center h-[80vh]">
           <img src={loader} alt="" />
         </div>
       ) : (
-        <div className="dark:bg-zinc-900  lg:max-w-6xl md:max-w-5xl mx-auto py-5 min-h-screen">
+        <div className="dark:bg-zinc-900  lg:max-w-6xl md:max-w-5xl mx-auto py-5 ">
           <h1 className="text-4xl py-5">{blog.title}</h1>
           <div className="text-xl py-4 prose dark:prose-invert dark:text-white ">
             <ReactMarkdown>{blog.body}</ReactMarkdown>
